@@ -1,0 +1,155 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  username String @id @default(uuid())
+  pwd String
+  is_active Boolean
+
+  userRoleBridge UserRoleBridge[]
+  pegawaiObj Pegawai?
+
+  @@map("user")
+}
+
+model Roles {
+  description String @id
+  userRoleBridge UserRoleBridge[]
+  @@map("roles")
+}
+
+model UserRoleBridge {
+  description String
+  username String
+
+  roles Roles @relation(fields: [description],references: [description])
+  user User @relation(fields: [username],references: [username])
+
+  @@id([description,username])
+  @@unique([description,username])
+
+  @@map("user_role_bridge")
+}
+
+model StatusPegawai {
+  id Int @id
+  desc String
+
+  pegawaiObj Pegawai[]
+
+  @@map("status_pegawai")
+}
+
+model Jabatan {
+  id Int @id
+  desc String
+  pegawaiObj Pegawai[]
+
+  @@map("jabatan")
+}
+
+model Pegawai {
+  uuid String @id @default(uuid())
+  fullname String?
+  fullname_with_title String?
+  nickname String?
+  nip String?
+  old_nip String?
+  phone_number String?
+  username String? @unique
+  status_pegawai Int?
+  jabatan Int?
+
+  userObj User? @relation(fields: [username],references: [username], onUpdate: Cascade)
+  statusObj StatusPegawai? @relation(fields: [status_pegawai],references: [id], onUpdate: Cascade)
+  jabatanObj Jabatan? @relation(fields: [jabatan], references: [id], onUpdate: Cascade)
+  candidateObj CandidateCC[]
+  penilaiObj PenilaiCC[]
+
+  @@map("pegawai")
+}
+
+model PenilaianCC {
+  uuid String @id @default(uuid())
+  desc String 
+  tahun Int @unique
+  status Int @default(0)
+  created_at DateTime @default(now())
+  last_updated DateTime @updatedAt @default(now())
+
+  candidateObj CandidateCC[]
+  penilaiObj PenilaiCC[]
+
+  @@map("penilaian_cc")
+}
+
+model CandidateCC {
+  uuid String @id @default(uuid())
+  pegawai String 
+  penilaiancc String
+  score Float @default(0.0)
+  kjk Float @default(0.0)
+  skp Float @default(0.0)
+  created_at DateTime @default(now())
+  last_updated DateTime @updatedAt @default(now())
+
+  penilaianObj PenilaianCC @relation(fields: [penilaiancc], references: [uuid])
+  pegawaiObj Pegawai @relation(fields: [pegawai], references: [username])
+  penilaianAnswer PenilaianCcAnswer[]
+  @@map("candidatecc")
+}
+
+model PenilaiCC {
+  uuid String @id @default(uuid())
+  pegawai String
+  penilaiancc String
+
+  pegawaiObj Pegawai @relation(fields: [pegawai], references: [username])
+  penilaianObj PenilaianCC @relation(fields: [penilaiancc], references: [uuid])
+  penilaianAnswerObj PenilaianCcAnswer[]
+
+  @@map("penilaicc")
+}
+
+model PenilaianCcQuestions {
+  uuid String @id @default(uuid())
+  title String
+  desc String 
+  order Int
+  tag String?
+  is_active Boolean
+
+  answerObj PenilaianCcAnswer[]
+
+  @@map("penilaiancc_questions")
+}
+
+model PenilaianCcAnswer {
+  uuid String @id @default(uuid())
+  penilaicc String
+  candidatecc String
+  question String 
+  value Int @default(0)
+  created_at DateTime @default(now())
+  last_updated DateTime @updatedAt @default(now())
+
+  penilaiObj PenilaiCC @relation(fields: [penilaicc], references: [uuid])
+  candidateObj CandidateCC @relation(fields: [candidatecc], references: [uuid])
+  questionObj PenilaianCcQuestions @relation(fields: [question],references: [uuid])
+
+  @@unique([penilaicc,candidatecc,question])
+  @@map("penilaiancc_answer")
+}
