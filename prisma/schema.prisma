@@ -93,7 +93,7 @@ model PenilaianCC {
   candidateObj CandidateCC[]
   penilaiObj PenilaiCC[]
 
-  @@map("penilaian_cc")
+  @@map("penilaiancc")
 }
 
 model CandidateCC {
@@ -151,5 +151,5 @@ model PenilaianCcAnswer {
   questionObj PenilaianCcQuestions @relation(fields: [question],references: [uuid])
 
   @@unique([penilaicc,candidatecc,question])
-  @@map("penilaiancc_answer")
+  @@map("penilaiancc_answers")
 }
