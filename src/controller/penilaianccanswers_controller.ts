@@ -52,7 +52,12 @@ export class PenilaianCcAnswerController {
             if(!result) {
                 throw new ResponseError(404, "Not Found");
             }
-            resp.status(200).json(returnValue.values().toArray());
+            let listReturnValue: KuesionerCcResponse[] = [];
+            for(let [key,value] of returnValue.entries()){
+                console.info(`candidateID ${key}`);
+                listReturnValue.push(value);
+            }
+            resp.status(200).json(listReturnValue);
             return;
         } catch(err){
             next(err);
