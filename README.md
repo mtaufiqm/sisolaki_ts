@@ -11,6 +11,7 @@ WINDOWS_UPLOAD="../upload"
 LINUX_UPLOAD="/opt/upload"
 TZ="Asia/Makassar"
 JWT_SECRET_KEY="YOUR_SECRET_KEY"
+```
 
 ## Development
 npm start
