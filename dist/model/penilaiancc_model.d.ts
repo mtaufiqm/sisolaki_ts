@@ -1,3 +1,6 @@
+import { PenilaianCC } from "../generated/prisma/client";
+import { CandidateCcReponse } from "./candidatecc_model";
+import { PenilaiCcResponse } from "./penilaicc_model";
 export type CreatePenilaianCcRequest = {
     desc: string;
     tahun: number;
@@ -8,4 +11,16 @@ export type UpdatePenilaianCcRequest = {
     tahun?: number;
     status?: number;
 };
+export type PenilaianCcResponse = PenilaianCC;
+export type PenilaianCcStatsResponse = {
+    uuid: string;
+    desc: string;
+    tahun: number;
+    status: number;
+    candidateObj: CandidateCcReponse[];
+    penilaiObj: PenilaiCcResponse[];
+    created_at: Date;
+    last_updated: Date;
+};
+export declare function toPenilaianStatsResponse(data: PenilaianCcResponse, candidate: CandidateCcReponse[], penilai: PenilaiCcResponse[]): PenilaianCcStatsResponse;
 //# sourceMappingURL=penilaiancc_model.d.ts.map

@@ -232,6 +232,28 @@ export interface PrismaClient<in LogOpts extends Prisma.LogLevel = never, in out
     get penilaianCcAnswer(): Prisma.PenilaianCcAnswerDelegate<ExtArgs, {
         omit: OmitOpts;
     }>;
+    /**
+     * `prisma.eOMPenilaian`: Exposes CRUD operations for the **EOMPenilaian** model.
+      * Example usage:
+      * ```ts
+      * // Fetch zero or more EOMPenilaians
+      * const eOMPenilaians = await prisma.eOMPenilaian.findMany()
+      * ```
+      */
+    get eOMPenilaian(): Prisma.EOMPenilaianDelegate<ExtArgs, {
+        omit: OmitOpts;
+    }>;
+    /**
+     * `prisma.eOMStatus`: Exposes CRUD operations for the **EOMStatus** model.
+      * Example usage:
+      * ```ts
+      * // Fetch zero or more EOMStatuses
+      * const eOMStatuses = await prisma.eOMStatus.findMany()
+      * ```
+      */
+    get eOMStatus(): Prisma.EOMStatusDelegate<ExtArgs, {
+        omit: OmitOpts;
+    }>;
 }
 export declare function getPrismaClientClass(): PrismaClientConstructor;
 //# sourceMappingURL=class.d.ts.map

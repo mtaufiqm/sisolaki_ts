@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthController = void 0;
-const validation_1 = require("../validator/validation");
 const user_validation_1 = require("../validator/user_validation");
+const validation_1 = require("../validator/validation");
 const user_service_1 = require("../service/user_service");
 const jwt_helper_1 = require("../helper/jwt_helper");
 class AuthController {
@@ -11,11 +11,8 @@ class AuthController {
         try {
             let jsonBody = req.body;
             let data = validation_1.Validation.validate(user_validation_1.UserValidation.LOGIN, jsonBody);
-            console.info("EXECUTED 0");
             let result = await user_service_1.UserService.login(data);
-            console.info("EXECUTED 1");
             let jwtToken = await jwt_helper_1.JWTHelper.create(result);
-            console.info("EXECUTED 2");
             resp.status(200).json({
                 token: jwtToken
             });

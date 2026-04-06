@@ -9,5 +9,7 @@ export type * from './models/CandidateCC';
 export type * from './models/PenilaiCC';
 export type * from './models/PenilaianCcQuestions';
 export type * from './models/PenilaianCcAnswer';
+export type * from './models/EOMPenilaian';
+export type * from './models/EOMStatus';
 export type * from './commonInputTypes';
 //# sourceMappingURL=models.d.ts.map

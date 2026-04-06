@@ -1,1 +1,1 @@
-{"version":3,"file":"penilaiancc_model.js","sourceRoot":"","sources":["../../src/model/penilaiancc_model.ts"],"names":[],"mappings":""}
+{"version":3,"file":"penilaiancc_model.js","sourceRoot":"","sources":["../../src/model/penilaiancc_model.ts"],"names":[],"mappings":";;AA6BA,4DAMC;AAND,SAAgB,wBAAwB,CAAC,IAAyB,EAAE,SAA+B,EAAE,OAA4B;IAC7H,OAAO;QACH,GAAG,IAAI;QACP,YAAY,EAAE,SAAS;QACvB,UAAU,EAAE,OAAO;KACtB,CAAA;AACL,CAAC"}

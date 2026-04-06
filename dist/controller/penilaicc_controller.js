@@ -8,7 +8,7 @@ const auth_helper_1 = require("../helper/auth_helper");
 const database_1 = require("../web/database");
 const zod_1 = __importDefault(require("zod"));
 class PenilaiCcController {
-    static async readAllByYear(req, resp, next) {
+    static async readAllByPenilaianYear(req, resp, next) {
         try {
             auth_helper_1.AuthHelper.isMinimalPegawaiThrow(req);
             let tahun = zod_1.default.coerce.number().int().nonnegative().max(9999).default(new Date().getFullYear()).parse(req.query.year);
@@ -17,6 +17,31 @@ class PenilaiCcController {
                     penilaianObj: {
                         tahun: tahun
                     }
+                },
+                include: {
+                    pegawaiObj: true
+                },
+                orderBy: {
+                    pegawaiObj: {
+                        fullname: "asc"
+                    }
+                }
+            });
+            resp.status(200).json(result);
+            return;
+        }
+        catch (err) {
+            next(err);
+            return;
+        }
+    }
+    static async readAllByPenilaianUuid(req, resp, next) {
+        try {
+            auth_helper_1.AuthHelper.isMinimalPegawaiThrow(req);
+            let uuid = zod_1.default.string().parse(req.params.uuid);
+            let result = await database_1.client.penilaiCC.findMany({
+                where: {
+                    penilaiancc: uuid
                 },
                 include: {
                     pegawaiObj: true

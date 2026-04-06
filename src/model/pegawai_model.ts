@@ -38,7 +38,6 @@ export type PegawaiResponse = {
     jabatan: number | null;
 }
 
-
 export function toPegawaiResponse(data: Pegawai): PegawaiResponse {
     return data as PegawaiResponse;
 }

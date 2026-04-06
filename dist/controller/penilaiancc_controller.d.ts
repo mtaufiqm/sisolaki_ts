@@ -5,6 +5,8 @@ export declare class PenilaianCcController {
     static updatePenilaianCC(req: UserRequest, resp: Response, next: NextFunction): Promise<void>;
     static deletePenilaianCC(req: UserRequest, resp: Response, next: NextFunction): Promise<void>;
     static readAll(req: UserRequest, resp: Response, next: NextFunction): Promise<void>;
+    static readAllByPenilai(req: UserRequest, resp: Response, next: NextFunction): Promise<void>;
     static readAllCandidateByPenilaian(req: UserRequest, resp: Response, next: NextFunction): Promise<void>;
+    static getStatsByUuid(req: UserRequest, resp: Response, next: NextFunction): Promise<void>;
 }
 //# sourceMappingURL=penilaiancc_controller.d.ts.map

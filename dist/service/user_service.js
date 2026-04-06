@@ -16,7 +16,7 @@ class UserService {
                     userRoleBridge: true
                 }
             });
-            console.info(user);
+            // console.info(user);
             if (!user) {
                 throw new response_error_1.ResponseError(401, `Invalid Username/Password`);
             }
@@ -59,7 +59,7 @@ class UserService {
                 }
             }
         });
-        console.info(`List Role ${listRole.map((el) => el.description)}`);
+        // console.info(`List Role ${listRole.map((el) => el.description)}`);
         return (0, user_model_1.toUserResponse)(result, listRole);
     }
 }

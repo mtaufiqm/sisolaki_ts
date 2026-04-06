@@ -9,9 +9,10 @@
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
     "module": "commonjs",
-    "target": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "node10",
+    "ignoreDeprecations":"6.0",
     "esModuleInterop": true,
+    "target": "esnext",
     // For nodejs:
     // "lib": ["esnext"],
     // "types": ["node"],

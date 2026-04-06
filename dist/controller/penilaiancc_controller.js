@@ -10,6 +10,7 @@ const penilaiancc_validation_1 = require("../validator/penilaiancc_validation");
 const database_1 = require("../web/database");
 const zod_1 = __importDefault(require("zod"));
 const response_error_1 = require("../error/response_error");
+const penilaiancc_service_1 = require("../service/penilaiancc_service");
 class PenilaianCcController {
     static async createPenilaianCC(req, resp, next) {
         try {
@@ -34,6 +35,10 @@ class PenilaianCcController {
             let penilaianObj = await database_1.client.penilaianCC.findUnique({
                 where: {
                     uuid: uuid
+                },
+                include: {
+                    penilaiObj: true,
+                    candidateObj: true
                 }
             });
             if (!penilaianObj) {
@@ -50,15 +55,26 @@ class PenilaianCcController {
             }
             if (validatedData.status != null && validatedData.status === 1) {
                 //if updated to dimulai, fill all penilaianccanswer for all penilai and candidate 
-                // let allCandidate = await client.candidateCC.findMany({
-                //     where: {
-                //         penilaiancc: uuid
-                //     },
-                //     select: {
-                //         uuid: true,
-                //         pegawai: true
-                //     }
-                // });
+                let allQuestions = await database_1.client.penilaianCcQuestions.findMany({
+                    where: {
+                        is_active: true
+                    }
+                });
+                let insertData = [];
+                penilaianObj.candidateObj.forEach((el) => {
+                    penilaianObj.penilaiObj.forEach((el2) => {
+                        allQuestions.forEach((el3) => {
+                            insertData.push({
+                                question: el3.uuid,
+                                penilaicc: el2.uuid,
+                                candidatecc: el.uuid
+                            });
+                        });
+                    });
+                });
+                let resultFill = await database_1.client.penilaianCcAnswer.createManyAndReturn({
+                    data: insertData
+                });
             }
             let result = await database_1.client.penilaianCC.update({
                 where: {
@@ -103,16 +119,49 @@ class PenilaianCcController {
         try {
             auth_helper_1.AuthHelper.isMinimalPegawaiThrow(req);
             //uuid is penilaiancc_uuid
-            let uuid = zod_1.default.string().parse(req.params.uuid);
             let result = await database_1.client.penilaianCC.findMany({
                 orderBy: {
                     tahun: "desc"
+                },
+                include: {
+                    penilaiObj: true,
+                    candidateObj: true
                 }
             });
             resp.status(200).json(result);
             return;
         }
         catch (err) {
+            next(err);
+            return;
+        }
+    }
+    static async readAllByPenilai(req, resp, next) {
+        try {
+            // AuthHelper.isMinimalPegawaiThrow(req);
+            //uuid is penilaiancc_uuid
+            let result = await database_1.client.penilaianCC.findMany({
+                orderBy: {
+                    tahun: "desc"
+                },
+                include: {
+                    penilaiObj: true,
+                    candidateObj: true
+                },
+                where: {
+                    penilaiObj: {
+                        some: {
+                            pegawai: req.user.username
+                        }
+                    },
+                    status: 1 //SUDAH DIMULAI  
+                }
+            });
+            resp.status(200).json(result);
+            return;
+        }
+        catch (err) {
+            console.info(err);
             next(err);
             return;
         }
@@ -135,6 +184,19 @@ class PenilaianCcController {
                     pegawaiObj: true
                 }
             });
+            resp.status(200).json(result);
+            return;
+        }
+        catch (err) {
+            next(err);
+            return;
+        }
+    }
+    static async getStatsByUuid(req, resp, next) {
+        try {
+            auth_helper_1.AuthHelper.isMinimalPegawaiThrow(req);
+            let uuid = zod_1.default.string().parse(req.params.uuid);
+            let result = await penilaiancc_service_1.PenilaianCcService.getStatsByUuid(uuid);
             resp.status(200).json(result);
             return;
         }

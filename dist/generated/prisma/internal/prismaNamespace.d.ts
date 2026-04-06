@@ -242,6 +242,8 @@ export declare const ModelName: {
     readonly PenilaiCC: "PenilaiCC";
     readonly PenilaianCcQuestions: "PenilaianCcQuestions";
     readonly PenilaianCcAnswer: "PenilaianCcAnswer";
+    readonly EOMPenilaian: "EOMPenilaian";
+    readonly EOMStatus: "EOMStatus";
 };
 export type ModelName = (typeof ModelName)[keyof typeof ModelName];
 export interface TypeMapCb<GlobalOmitOptions = {}> extends runtime.Types.Utils.Fn<{
@@ -254,7 +256,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         omit: GlobalOmitOptions;
     };
     meta: {
-        modelProps: "user" | "roles" | "userRoleBridge" | "statusPegawai" | "jabatan" | "pegawai" | "penilaianCC" | "candidateCC" | "penilaiCC" | "penilaianCcQuestions" | "penilaianCcAnswer";
+        modelProps: "user" | "roles" | "userRoleBridge" | "statusPegawai" | "jabatan" | "pegawai" | "penilaianCC" | "candidateCC" | "penilaiCC" | "penilaianCcQuestions" | "penilaianCcAnswer" | "eOMPenilaian" | "eOMStatus";
         txIsolationLevel: TransactionIsolationLevel;
     };
     model: {
@@ -1072,6 +1074,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
                 };
             };
         };
+        EOMPenilaian: {
+            payload: Prisma.$EOMPenilaianPayload<ExtArgs>;
+            fields: Prisma.EOMPenilaianFieldRefs;
+            operations: {
+                findUnique: {
+                    args: Prisma.EOMPenilaianFindUniqueArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$EOMPenilaianPayload> | null;
+                };
+                findUniqueOrThrow: {
+                    args: Prisma.EOMPenilaianFindUniqueOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$EOMPenilaianPayload>;
+                };
+                findFirst: {
+                    args: Prisma.EOMPenilaianFindFirstArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$EOMPenilaianPayload> | null;
+                };
+                findFirstOrThrow: {
+                    args: Prisma.EOMPenilaianFindFirstOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$EOMPenilaianPayload>;
+                };
+                findMany: {
+                    args: Prisma.EOMPenilaianFindManyArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$EOMPenilaianPayload>[];
+                };
+                create: {
+                    args: Prisma.EOMPenilaianCreateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$EOMPenilaianPayload>;
+                };
+                createMany: {
+                    args: Prisma.EOMPenilaianCreateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                createManyAndReturn: {
+                    args: Prisma.EOMPenilaianCreateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$EOMPenilaianPayload>[];
+                };
+                delete: {
+                    args: Prisma.EOMPenilaianDeleteArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$EOMPenilaianPayload>;
+                };
+                update: {
+                    args: Prisma.EOMPenilaianUpdateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$EOMPenilaianPayload>;
+                };
+                deleteMany: {
+                    args: Prisma.EOMPenilaianDeleteManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateMany: {
+                    args: Prisma.EOMPenilaianUpdateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateManyAndReturn: {
+                    args: Prisma.EOMPenilaianUpdateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$EOMPenilaianPayload>[];
+                };
+                upsert: {
+                    args: Prisma.EOMPenilaianUpsertArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$EOMPenilaianPayload>;
+                };
+                aggregate: {
+                    args: Prisma.EOMPenilaianAggregateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.AggregateEOMPenilaian>;
+                };
+                groupBy: {
+                    args: Prisma.EOMPenilaianGroupByArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.EOMPenilaianGroupByOutputType>[];
+                };
+                count: {
+                    args: Prisma.EOMPenilaianCountArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.EOMPenilaianCountAggregateOutputType> | number;
+                };
+            };
+        };
+        EOMStatus: {
+            payload: Prisma.$EOMStatusPayload<ExtArgs>;
+            fields: Prisma.EOMStatusFieldRefs;
+            operations: {
+                findUnique: {
+                    args: Prisma.EOMStatusFindUniqueArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$EOMStatusPayload> | null;
+                };
+                findUniqueOrThrow: {
+                    args: Prisma.EOMStatusFindUniqueOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$EOMStatusPayload>;
+                };
+                findFirst: {
+                    args: Prisma.EOMStatusFindFirstArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$EOMStatusPayload> | null;
+                };
+                findFirstOrThrow: {
+                    args: Prisma.EOMStatusFindFirstOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$EOMStatusPayload>;
+                };
+                findMany: {
+                    args: Prisma.EOMStatusFindManyArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$EOMStatusPayload>[];
+                };
+                create: {
+                    args: Prisma.EOMStatusCreateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$EOMStatusPayload>;
+                };
+                createMany: {
+                    args: Prisma.EOMStatusCreateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                createManyAndReturn: {
+                    args: Prisma.EOMStatusCreateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$EOMStatusPayload>[];
+                };
+                delete: {
+                    args: Prisma.EOMStatusDeleteArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$EOMStatusPayload>;
+                };
+                update: {
+                    args: Prisma.EOMStatusUpdateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$EOMStatusPayload>;
+                };
+                deleteMany: {
+                    args: Prisma.EOMStatusDeleteManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateMany: {
+                    args: Prisma.EOMStatusUpdateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateManyAndReturn: {
+                    args: Prisma.EOMStatusUpdateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$EOMStatusPayload>[];
+                };
+                upsert: {
+                    args: Prisma.EOMStatusUpsertArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$EOMStatusPayload>;
+                };
+                aggregate: {
+                    args: Prisma.EOMStatusAggregateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.AggregateEOMStatus>;
+                };
+                groupBy: {
+                    args: Prisma.EOMStatusGroupByArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.EOMStatusGroupByOutputType>[];
+                };
+                count: {
+                    args: Prisma.EOMStatusCountArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.EOMStatusCountAggregateOutputType> | number;
+                };
+            };
+        };
     };
 } & {
     other: {
@@ -1189,6 +1339,22 @@ export declare const PenilaianCcAnswerScalarFieldEnum: {
     readonly last_updated: "last_updated";
 };
 export type PenilaianCcAnswerScalarFieldEnum = (typeof PenilaianCcAnswerScalarFieldEnum)[keyof typeof PenilaianCcAnswerScalarFieldEnum];
+export declare const EOMPenilaianScalarFieldEnum: {
+    readonly uuid: "uuid";
+    readonly desc: "desc";
+    readonly periode: "periode";
+    readonly start_date: "start_date";
+    readonly end_date: "end_date";
+    readonly status: "status";
+    readonly created_at: "created_at";
+    readonly last_updated: "last_updated";
+};
+export type EOMPenilaianScalarFieldEnum = (typeof EOMPenilaianScalarFieldEnum)[keyof typeof EOMPenilaianScalarFieldEnum];
+export declare const EOMStatusScalarFieldEnum: {
+    readonly id: "id";
+    readonly desc: "desc";
+};
+export type EOMStatusScalarFieldEnum = (typeof EOMStatusScalarFieldEnum)[keyof typeof EOMStatusScalarFieldEnum];
 export declare const SortOrder: {
     readonly asc: "asc";
     readonly desc: "desc";
@@ -1348,6 +1514,8 @@ export type GlobalOmitConfig = {
     penilaiCC?: Prisma.PenilaiCCOmit;
     penilaianCcQuestions?: Prisma.PenilaianCcQuestionsOmit;
     penilaianCcAnswer?: Prisma.PenilaianCcAnswerOmit;
+    eOMPenilaian?: Prisma.EOMPenilaianOmit;
+    eOMStatus?: Prisma.EOMStatusOmit;
 };
 export type LogLevel = 'info' | 'query' | 'warn' | 'error';
 export type LogDefinition = {

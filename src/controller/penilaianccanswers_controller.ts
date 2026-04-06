@@ -54,7 +54,6 @@ export class PenilaianCcAnswerController {
             }
             let listReturnValue: KuesionerCcResponse[] = [];
             for(let [key,value] of returnValue.entries()){
-                console.info(`candidateID ${key}`);
                 listReturnValue.push(value);
             }
             resp.status(200).json(listReturnValue);

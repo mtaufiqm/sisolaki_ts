@@ -1,4 +1,5 @@
 import { CandidateCC, Pegawai } from "../generated/prisma/client";
+import { PegawaiResponse } from "./pegawai_model";
 
 export type CreateCandidateCcRequest = {
     pegawai: string;
@@ -12,14 +13,4 @@ export type UpdateCandidateCcRequest = {
     skp?: number;
 }
 
-export type CandidateCcReponse = {
-    uuid: string;
-    pegawai: string;
-    pegawaiObj: Pegawai;
-    penilaiancc: string;
-    score: number;
-    kjk: number;
-    skp: number;
-    created_at: Date;
-    last_updated: Date;
-}
+export type CandidateCcReponse = CandidateCC & {pegawaiObj: PegawaiResponse};

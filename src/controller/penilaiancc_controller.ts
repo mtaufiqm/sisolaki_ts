@@ -9,6 +9,7 @@ import z from "zod";
 import { PenilaianCC } from "../generated/prisma/client";
 import { ResponseError } from "../error/response_error";
 import { CreatePenilaianCcAnswer } from "../model/penilaianccanswers_model";
+import { PenilaianCcService } from "../service/penilaiancc_service";
 
 export class PenilaianCcController {
 
@@ -120,7 +121,6 @@ export class PenilaianCcController {
         try {
             AuthHelper.isMinimalPegawaiThrow(req);
             //uuid is penilaiancc_uuid
-            let uuid: string = z.string().parse(req.params.uuid);
             let result = await client.penilaianCC.findMany({
                 orderBy: {
                     tahun: "desc"
@@ -186,6 +186,19 @@ export class PenilaianCcController {
                     pegawaiObj: true
                 }
             });
+            resp.status(200).json(result);
+            return;
+        } catch(err){
+            next(err);
+            return;
+        }
+    }
+
+    static async getStatsByUuid(req: UserRequest, resp: Response, next: NextFunction): Promise<void>{
+        try {
+            AuthHelper.isMinimalPegawaiThrow(req);
+            let uuid: string = z.string().parse(req.params.uuid);
+            let result = await PenilaianCcService.getStatsByUuid(uuid);
             resp.status(200).json(result);
             return;
         } catch(err){

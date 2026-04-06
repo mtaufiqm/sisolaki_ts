@@ -12,11 +12,8 @@ export class AuthController {
         try {
             let jsonBody = req.body as UserLoginRequest;
             let data = Validation.validate(UserValidation.LOGIN,jsonBody);
-            console.info("EXECUTED 0");
             let result = await UserService.login(data);
-            console.info("EXECUTED 1");
             let jwtToken = await JWTHelper.create(result);
-            console.info("EXECUTED 2");
             resp.status(200).json({
                 token: jwtToken
             });

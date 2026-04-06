@@ -57,4 +57,14 @@ export type PenilaianCcQuestions = Prisma.PenilaianCcQuestionsModel;
  *
  */
 export type PenilaianCcAnswer = Prisma.PenilaianCcAnswerModel;
+/**
+ * Model EOMPenilaian
+ *
+ */
+export type EOMPenilaian = Prisma.EOMPenilaianModel;
+/**
+ * Model EOMStatus
+ *
+ */
+export type EOMStatus = Prisma.EOMStatusModel;
 //# sourceMappingURL=browser.d.ts.map

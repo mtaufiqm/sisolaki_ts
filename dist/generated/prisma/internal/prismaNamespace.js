@@ -48,7 +48,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.defineExtension = exports.NullsOrder = exports.QueryMode = exports.SortOrder = exports.PenilaianCcAnswerScalarFieldEnum = exports.PenilaianCcQuestionsScalarFieldEnum = exports.PenilaiCCScalarFieldEnum = exports.CandidateCCScalarFieldEnum = exports.PenilaianCCScalarFieldEnum = exports.PegawaiScalarFieldEnum = exports.JabatanScalarFieldEnum = exports.StatusPegawaiScalarFieldEnum = exports.UserRoleBridgeScalarFieldEnum = exports.RolesScalarFieldEnum = exports.UserScalarFieldEnum = exports.TransactionIsolationLevel = exports.ModelName = exports.AnyNull = exports.JsonNull = exports.DbNull = exports.NullTypes = exports.prismaVersion = exports.getExtensionContext = exports.Decimal = exports.Sql = exports.raw = exports.join = exports.empty = exports.sql = exports.PrismaClientValidationError = exports.PrismaClientInitializationError = exports.PrismaClientRustPanicError = exports.PrismaClientUnknownRequestError = exports.PrismaClientKnownRequestError = void 0;
+exports.defineExtension = exports.NullsOrder = exports.QueryMode = exports.SortOrder = exports.EOMStatusScalarFieldEnum = exports.EOMPenilaianScalarFieldEnum = exports.PenilaianCcAnswerScalarFieldEnum = exports.PenilaianCcQuestionsScalarFieldEnum = exports.PenilaiCCScalarFieldEnum = exports.CandidateCCScalarFieldEnum = exports.PenilaianCCScalarFieldEnum = exports.PegawaiScalarFieldEnum = exports.JabatanScalarFieldEnum = exports.StatusPegawaiScalarFieldEnum = exports.UserRoleBridgeScalarFieldEnum = exports.RolesScalarFieldEnum = exports.UserScalarFieldEnum = exports.TransactionIsolationLevel = exports.ModelName = exports.AnyNull = exports.JsonNull = exports.DbNull = exports.NullTypes = exports.prismaVersion = exports.getExtensionContext = exports.Decimal = exports.Sql = exports.raw = exports.join = exports.empty = exports.sql = exports.PrismaClientValidationError = exports.PrismaClientInitializationError = exports.PrismaClientRustPanicError = exports.PrismaClientUnknownRequestError = exports.PrismaClientKnownRequestError = void 0;
 const runtime = __importStar(require("@prisma/client/runtime/client"));
 /**
  * Prisma Errors
@@ -113,7 +113,9 @@ exports.ModelName = {
     CandidateCC: 'CandidateCC',
     PenilaiCC: 'PenilaiCC',
     PenilaianCcQuestions: 'PenilaianCcQuestions',
-    PenilaianCcAnswer: 'PenilaianCcAnswer'
+    PenilaianCcAnswer: 'PenilaianCcAnswer',
+    EOMPenilaian: 'EOMPenilaian',
+    EOMStatus: 'EOMStatus'
 };
 /**
  * Enums
@@ -195,6 +197,20 @@ exports.PenilaianCcAnswerScalarFieldEnum = {
     value: 'value',
     created_at: 'created_at',
     last_updated: 'last_updated'
+};
+exports.EOMPenilaianScalarFieldEnum = {
+    uuid: 'uuid',
+    desc: 'desc',
+    periode: 'periode',
+    start_date: 'start_date',
+    end_date: 'end_date',
+    status: 'status',
+    created_at: 'created_at',
+    last_updated: 'last_updated'
+};
+exports.EOMStatusScalarFieldEnum = {
+    id: 'id',
+    desc: 'desc'
 };
 exports.SortOrder = {
     asc: 'asc',

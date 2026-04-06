@@ -37,6 +37,8 @@ export declare const ModelName: {
     readonly PenilaiCC: "PenilaiCC";
     readonly PenilaianCcQuestions: "PenilaianCcQuestions";
     readonly PenilaianCcAnswer: "PenilaianCcAnswer";
+    readonly EOMPenilaian: "EOMPenilaian";
+    readonly EOMStatus: "EOMStatus";
 };
 export type ModelName = (typeof ModelName)[keyof typeof ModelName];
 export declare const TransactionIsolationLevel: {
@@ -129,6 +131,22 @@ export declare const PenilaianCcAnswerScalarFieldEnum: {
     readonly last_updated: "last_updated";
 };
 export type PenilaianCcAnswerScalarFieldEnum = (typeof PenilaianCcAnswerScalarFieldEnum)[keyof typeof PenilaianCcAnswerScalarFieldEnum];
+export declare const EOMPenilaianScalarFieldEnum: {
+    readonly uuid: "uuid";
+    readonly desc: "desc";
+    readonly periode: "periode";
+    readonly start_date: "start_date";
+    readonly end_date: "end_date";
+    readonly status: "status";
+    readonly created_at: "created_at";
+    readonly last_updated: "last_updated";
+};
+export type EOMPenilaianScalarFieldEnum = (typeof EOMPenilaianScalarFieldEnum)[keyof typeof EOMPenilaianScalarFieldEnum];
+export declare const EOMStatusScalarFieldEnum: {
+    readonly id: "id";
+    readonly desc: "desc";
+};
+export type EOMStatusScalarFieldEnum = (typeof EOMStatusScalarFieldEnum)[keyof typeof EOMStatusScalarFieldEnum];
 export declare const SortOrder: {
     readonly asc: "asc";
     readonly desc: "desc";
