@@ -14,10 +14,12 @@ JWT_SECRET_KEY="YOUR_SECRET_KEY"
 ```
 
 ## Development
-```npm start
+```
+npm start
 ```
 
 ## Deployment
-```npx tsc
+```
+npx tsc
 node ./dist/web/web.js
 ```
